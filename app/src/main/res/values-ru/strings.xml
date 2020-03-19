@@ -30,7 +30,9 @@
     <string name="passwords_not_same">Пароли не совпадают</string>
 
     <!-- Others -->
+    <string name="hand_address_input">Введите адрес вручную</string>
     <string name="Success_adding">Запись успешно добавлена</string>
+
 
 
 </resources>

@@ -2,6 +2,7 @@ package com.example.test;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,14 +26,15 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     private TextInputLayout lName, lEmail, lPhone, lPassword, lPasswordConf;
     private EditText name, eMail, phone, password, passwordConf;
     private Drawable img;
-    private String address;
+    private String[] address = new String[1];
     private UserViewModel userVM;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_activity);
-
+        context = this;
         userVM = new UserViewModel(this);
         //api key for google places
         String apiKey = getString(R.string.api_key);
@@ -65,21 +67,27 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         PlacesClient placesClient = Places.createClient(this);
 
         // Initialize the AutocompleteSupportFragment.
-        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+        final AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
         autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.ADDRESS,Place.Field.NAME));
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                address = place.getAddress();
+                address[0] = place.getAddress();
                 Log.d(TAG,"Address = "+place.getAddress());
             }
 
             @Override
             public void onError(Status status) {
+                // hand input in dialogFragment
+                //as example - no internet connection
+                NoAutocompleteDialog nacd = new NoAutocompleteDialog();
+                nacd.initialize(context,address,autocompleteFragment);
+                nacd.show(getFragmentManager(), "Autocomplete error");
                 Log.d(TAG, "An error occurred: " + status);
             }
         });
+
     }
 
     @Override
@@ -89,7 +97,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                     name.getText().toString().trim(),
                     eMail.getText().toString().trim(),
                     phone.getText().toString().trim(),
-                    address,
+                    address[0],
                     password.getText().toString().trim(),
                     passwordConf.getText().toString().trim()
             );
