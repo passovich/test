@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Test</string>
+    <string name="api_key">**************************************</string>
+
+    <!-- Hints -->
+    <string name="name">Имя:</string>
+    <string name="email">Email:</string>
+    <string name="password">Пароль (минимум 8 символов):</string>
+    <string name="password_confirm">Подтверждение пароля</string>
+    <string name="country_code">Код страны:</string>
+    <string name="phone">Номер телефона:</string>
+    <string name="address">Адрес:</string>
+    <string name="confirm">Подтвердить</string>
+
+    <!-- Errors -->
+    <string name="name_empty">Поле имя не может быть пустым</string>
+    <string name="email_empty">Поле email не может быть пустым</string>
+    <string name="email_bad">Указан неверный  адрес email</string>
+    <string name="phone_empty">Поле номер телефона не может быть пустым</string>
+    <string name="phone_shirt">Телефонный номер слишком короткий</string>
+    <string name="phone_without_plus">Телефонный номер должен начинаться с +</string>
+    <string name="phone_numbers">Телефонный номер может содержать только цифры и +</string>
+    <string name="phone_bad">Телефонный номер указан не верно</string>
+    <string name="country_code_bad">Код страны указан не верно</string>
+    <string name="address_empty">Поле адрес не может быть пустым</string>
+    <string name="password_empty">Поле пароль не может быть пустым</string>
+    <string name="password_weak">Пароль должен содержать как минимум одну цифру, символы верхнего и нижнего регистра</string>
+    <string name="password_bad">Пароль слишком простой</string>
+    <string name="password_shirt">Пароль слишком короткий (минимум 8 символов)</string>
+    <string name="passwords_not_same">Пароли не совпадают</string>
+
+    <!-- Others -->
+    <string name="Success_adding">Запись успешно добавлена</string>
+
+
+</resources>
